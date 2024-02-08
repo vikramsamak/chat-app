@@ -1,4 +1,5 @@
-import { BsSend } from "react-icons/bs";
+import { LuSendHorizonal } from "react-icons/lu";
+
 const MessageInput = () => {
     return (
         <form className="px-4 my-3">
@@ -9,7 +10,7 @@ const MessageInput = () => {
                     placeholder="Send a message"
                 />
                 <button className="absolute inset-y-0 end-0 flex items-center pe-3">
-                    <BsSend />
+                    <LuSendHorizonal />
                 </button>
             </div>
         </form>
