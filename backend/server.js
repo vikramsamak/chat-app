@@ -5,11 +5,11 @@ import userRoutes from "./routes/userRoutes.js"
 import cookieParser from "cookie-parser";
 import connectToMongoDb from "./db/connectToMongoDb.js";
 import dotenv from "dotenv"
+import { app, server } from "./socket/socket.js";
 
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
-const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 })
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     connectToMongoDb();
     console.log("Server is listenin on port", PORT);
 })
