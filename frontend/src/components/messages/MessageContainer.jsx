@@ -2,21 +2,29 @@ import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 import { TiMessages } from "react-icons/ti";
 import { useAuthContext } from "../../context/AuthContext"
+import useConversation from "../../zustand/useConversation"
+import { useEffect } from "react";
 
 const MessageContainer = () => {
-    const nochatSelected = true;
+
+    const { selectedConversation, setSelectedConverstion } = useConversation();
+
+    useEffect(() => {
+        return () => { setSelectedConverstion(null) }
+    }, [setSelectedConverstion])
+
     return (
         <div className="md:min-w-[450px] flex flex-col">
             {
-                nochatSelected ? (<NoChatSelected />) :
+                !selectedConversation ? (<NoChatSelected />) :
                     (
                         <>
                             <div className="bg-slate-500 px-4 py-2 mb-2">
-                                <span className="lebel-text">
+                                <span className="text-gray-900 font-bold">
                                     To:
                                 </span>
-                                <span className="text-gray-900 font-bold">
-                                    John Doe
+                                <span className="text-gray-900 font-bold ml-2">
+                                    {selectedConversation.fullName}
                                 </span>
                             </div>
                             <Messages />
